@@ -8,7 +8,7 @@ import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomeControllerTest {
+class HomeControllerUnitTest {
 
     /**
      * Helper method untuk meng-encode string input tes menjadi Base64.
@@ -207,8 +207,7 @@ class HomeControllerTest {
         // PA(8.00) + UAS(24.00) = 32.00
         assertTrue(result.contains(">> Nilai Akhir: 32.00"));
         assertTrue(result.contains(">> Grade: E")); // 32 < 34
-    }
-    
+    } 
     // --- TES INI MENGUJI while(!hasNextLine()) ---
     @Test
     @DisplayName("perolehanNilai - Skenario Tanpa Terminator '---'")
