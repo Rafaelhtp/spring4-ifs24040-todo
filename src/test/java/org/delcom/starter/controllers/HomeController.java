@@ -8,7 +8,7 @@ import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomeControllerTest {
+class HomeControllerUnitTest {
 
     /**
      * Helper method untuk meng-encode string input tes menjadi Base64.

@@ -15,9 +15,6 @@
 - `GET /perbedaanL`: Menerima matriks Base64, menghitung nilai 'L', 'Kebalikan L', 'Tengah', dan 'Dominan'.
 - `GET /palingTer`: Menerima list angka Base64, melakukan analisis frekuensi (Tertinggi, Terendah, Terbanyak, Tersedikit).
 
-# Perbaikan & Konfigurasi:
-
-- Mengonfigurasi `pom.xml` (jacoco-maven-plugin) untuk mengecualikan `SpringStarterApplication.class` dari kalkulasi coverage agar build dapat lolos dengan 100% coverage pada controller.
 
 ## Syntax
 
