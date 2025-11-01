@@ -62,15 +62,11 @@
         <version>0.8.14</version>
         
         <!-- 
-          KONFIGURASI GLOBAL (TERMASUK EXCLUDES) 
-          Ditaruh di sini, di luar <executions>
+          Konfigurasi global ini akan berlaku untuk goal 'report',
+          tapi TIDAK untuk 'check' karena 'check' punya konfigurasinya sendiri.
         -->
         <configuration>
             <excludes>
-                <!-- 
-                  PERBAIKAN: Menggunakan nama file yang benar
-                  yaitu 'Application.class' sesuai screenshot Anda.
-                -->
                 <exclude>org/delcom/starter/Application.class</exclude>
             </excludes>
         </configuration>
@@ -93,7 +89,6 @@
           </execution>
           <!-- 
             Check coverage rules (Aturan 100%)
-            Saya menggabungkan dua <execution> 'check' Anda menjadi satu.
           -->
           <execution>
             <id>check</id>
@@ -102,6 +97,13 @@
               <goal>check</goal>
             </goals>
             <configuration>
+              <!-- 
+                PERBAIKAN: <excludes> HARUS DITARUH DI SINI, 
+                bersama <rules>, agar dibaca oleh goal 'check'.
+              -->
+              <excludes>
+                  <exclude>org/delcom/starter/Application.class</exclude>
+              </excludes>
               <rules>
                 <rule>
                   <element>BUNDLE</element>
