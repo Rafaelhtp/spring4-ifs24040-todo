@@ -34,5 +34,5 @@ command: `./mvnw test jacoco:report`
 
 command-check: `./mvnw clean test jacoco:check`
 
-updatee berkala biar bagus #semogabisa
+updatee berkala biar bagus 
 
