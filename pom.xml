@@ -68,11 +68,10 @@
         <configuration>
             <excludes>
                 <!-- 
-                  Ini memberitahu JaCoCo untuk mengabaikan
-                  file Spring Boot utama.
-                  (Ganti jika nama/paket Anda berbeda)
+                  PERBAIKAN: Menggunakan nama file yang benar
+                  yaitu 'Application.class' sesuai screenshot Anda.
                 -->
-                <exclude>org/delcom/starter/SpringBootApplication.class</exclude>
+                <exclude>org/delcom/starter/Application.class</exclude>
             </excludes>
         </configuration>
 
@@ -128,3 +127,4 @@
   </build>
 
 </project>
+
