@@ -8,7 +8,7 @@ import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class HomeControllerTest {
+class HomeControllerUnitTest {
 
     /**
      * Helper method untuk meng-encode string input tes menjadi Base64.
@@ -171,26 +171,27 @@ class HomeControllerTest {
         assertTrue(result.contains(">> Nilai Akhir: 40.00") && result.contains(">> Grade: D"));
     }
 
-    // --- TES INI DIPERBARUI UNTUK MENGUJI avgFinalExam == 0 ---
+    // --- TES INI MENGUJI SEMUA GARIS KUNING (maxPA == 0, dll.) ---
     @Test
     @DisplayName("perolehanNilai - Skenario Input Jarang (Sparse)")
     void perolehanNilai_SparseInput() {
         HomeController controller = new HomeController();
-        // Hanya menguji PA dan UTS. Lainnya harus 0.
-        String input = String.join("\n", "10 15 10 15 20 30", "PA|100|80", "UTS|100|50", "---");
+        // HANYA menguji TUGAS dan UTS. Lainnya harus 0.
+        // Ini akan menguji (maxPA == 0), (maxQuiz == 0), dll.
+        String input = String.join("\n", "10 15 10 15 20 30", "T|100|90", "UTS|100|50", "---");
         String base64Input = encodeBase64(input);
         
         String result = controller.perolehanNilai(base64Input);
+        
         // Memastikan cabang (max... == 0) ter-eksekusi
-        assertTrue(result.contains(">> Partisipatif: 80/100 (8.00/10)"));
-        assertTrue(result.contains(">> Tugas: 0/100 (0.00/15)"));
+        assertTrue(result.contains(">> Partisipatif: 0/100 (0.00/10)")); // Sekarang 0
+        assertTrue(result.contains(">> Tugas: 90/100 (13.50/15)"));    // Sekarang 90
         assertTrue(result.contains(">> Kuis: 0/100 (0.00/10)"));
         assertTrue(result.contains(">> Proyek: 0/100 (0.00/15)"));
         assertTrue(result.contains(">> UTS: 50/100 (10.00/20)"));
-        // INI YANG DIPERBAIKI: Memastikan UAS juga 0
         assertTrue(result.contains(">> UAS: 0/100 (0.00/30)"));
-        assertTrue(result.contains(">> Nilai Akhir: 18.00")); // 8.00 + 10.00
-        assertTrue(result.contains(">> Grade: E")); // 18.00 < 34
+        assertTrue(result.contains(">> Nilai Akhir: 23.50")); // 13.50 + 10.00
+        assertTrue(result.contains(">> Grade: E")); // 23.50 < 34
     }
     
     @Test
@@ -208,7 +209,7 @@ class HomeControllerTest {
         assertTrue(result.contains(">> Grade: E")); // 32 < 34
     }
     
-    // --- TES INI UNTUK MENGUJI while(!hasNextLine()) ---
+    // --- TES INI MENGUJI while(!hasNextLine()) ---
     @Test
     @DisplayName("perolehanNilai - Skenario Tanpa Terminator '---'")
     void perolehanNilai_NoTerminator() {
