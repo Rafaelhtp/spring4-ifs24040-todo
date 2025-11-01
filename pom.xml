@@ -72,7 +72,7 @@
                   file Spring Boot utama.
                   (Ganti jika nama/paket Anda berbeda)
                 -->
-                <exclude>org/delcom/starter/SpringStarterApplication.class</exclude>
+                <exclude>org/delcom/starter/SpringBootApplication.class</exclude>
             </excludes>
         </configuration>
 
