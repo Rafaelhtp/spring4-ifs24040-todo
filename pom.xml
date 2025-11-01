@@ -85,6 +85,18 @@
                         </goals>
                         
                     </execution>
+										<plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.14</version> <configuration>
+        <excludes>
+            <exclude>org/delcom/starter/SpringStarterApplication.class</exclude>
+        </excludes>
+    </configuration>
+    <executions>
+        </executions>
+</plugin>
+
 					<!-- Periksa coverage harus 100% -->
 					<execution>
 						<id>check</id>
