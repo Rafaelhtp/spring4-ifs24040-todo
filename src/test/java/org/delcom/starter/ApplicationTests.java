@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 
 // Anotasi @SpringBootTest ini KRITIS untuk lolos JaCoCo
 @SpringBootTest
-class ApplicationTest {
+class ApplicationTests {
 
   @Test
   @Timeout(10)
@@ -57,3 +57,4 @@ class ApplicationTest {
     });
   }
 }
+
