@@ -90,17 +90,17 @@ public class HomeController {
      * Menerima input nilai (Base64) dan mendelegasikannya ke metode processNilai.
      * Mengembalikan 200 OK jika berhasil, 400 Bad Request jika input tidak valid.
      */
-    @GetMapping("/perolehanNilai")
-    public ResponseEntity<String> perolehanNilai(@RequestParam String strBase64) {
+    // --- PERUBAHAN DI SINI ---
+    @GetMapping("/perolehanNilai/{strBase64}")
+    public ResponseEntity<String> perolehanNilai(@PathVariable String strBase64) {
+    // --- AKHIR PERUBAHAN ---
         try {
             String decodedInput = decodeBase64(strBase64);
             String result = processNilai(decodedInput);
             return ResponseEntity.ok(result);
         } catch (NoSuchElementException | ArrayIndexOutOfBoundsException | NumberFormatException e) {
-            // Blok catch spesifik (termasuk NumberFormatException) didahulukan
             return new ResponseEntity<>("Format data input tidak valid atau tidak lengkap. Pastikan angka dan format sudah benar.", HttpStatus.BAD_REQUEST);
         } catch (IllegalArgumentException e) {
-            // Blok catch umum (induk dari NumberFormatException)
             return new ResponseEntity<>("Input Base64 tidak valid.", HttpStatus.BAD_REQUEST);
         }
     }
@@ -110,8 +110,10 @@ public class HomeController {
      * Menerima input matriks (Base64) dan mendelegasikannya ke metode processMatrix.
      * Mengembalikan 200 OK jika berhasil, 400 Bad Request jika input tidak valid.
      */
-    @GetMapping("/perbedaanL")
-    public ResponseEntity<String> perbedaanL(@RequestParam String strBase64) {
+    // --- PERUBAHAN DI SINI ---
+    @GetMapping("/perbedaanL/{strBase64}")
+    public ResponseEntity<String> perbedaanL(@PathVariable String strBase64) {
+    // --- AKHIR PERUBAHAN ---
         try {
             String decodedInput = decodeBase64(strBase64);
             String result = processMatrix(decodedInput);
@@ -119,7 +121,6 @@ public class HomeController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Input Base64 tidak valid.", HttpStatus.BAD_REQUEST);
         } catch (NoSuchElementException e) {
-            // Ini akan ter-trigger jika input "abc"
             return new ResponseEntity<>("Format data matriks tidak valid atau tidak lengkap.", HttpStatus.BAD_REQUEST);
         }
     }
@@ -129,8 +130,10 @@ public class HomeController {
      * Menerima input list angka (Base64) dan mendelegasikannya ke metode processPalingTer.
      * Mengembalikan 200 OK jika berhasil, 400 Bad Request jika input tidak valid.
      */
-    @GetMapping("/palingTer")
-    public ResponseEntity<String> palingTer(@RequestParam String strBase64) {
+    // --- PERUBAHAN DI SINI ---
+    @GetMapping("/palingTer/{strBase64}")
+    public ResponseEntity<String> palingTer(@PathVariable String strBase64) {
+    // --- AKHIR PERUBAHAN ---
         try {
             String decodedInput = decodeBase64(strBase64);
             String result = processPalingTer(decodedInput);
@@ -138,8 +141,6 @@ public class HomeController {
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Input Base64 tidak valid.", HttpStatus.BAD_REQUEST);
         }
-        // Blok catch (NoSuchElementException e) dihapus karena unreachable.
-        // processPalingTer menggunakan hasNextInt() yang mencegah exception ini.
     }
 
 
@@ -283,8 +284,6 @@ public class HomeController {
             double finalScore = weightedPA + weightedAssignment + weightedQuiz + weightedProject + weightedMidExam + weightedFinalExam;
 
             sb.append("Perolehan Nilai:\n");
-            
-            // PERBAIKAN: Gunakan Locale.US (untuk desimal '.') dan \n (untuk line ending)
             sb.append(String.format(Locale.US, ">> Partisipatif: %d/100 (%.2f/%d)\n", roundedPA, weightedPA, paWeight));
             sb.append(String.format(Locale.US, ">> Tugas: %d/100 (%.2f/%d)\n", roundedAssignment, weightedAssignment, assignmentWeight));
             sb.append(String.format(Locale.US, ">> Kuis: %d/100 (%.2f/%d)\n", roundedQuiz, weightedQuiz, quizWeight));
@@ -467,4 +466,3 @@ public class HomeController {
         return sb.toString().trim();
     }
 }
-//update 
