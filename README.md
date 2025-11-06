@@ -5,6 +5,10 @@
 ### 29-10-2025
 
 - Melakukan inisialisasi proyek
+- Menambahkan method `sayHello()` pada HomeController
+= Menambahkan pengujian untuk method `sayHello()`.
+
+### 02-11-2025
 - Nambahin semua 4 studi kasus PBO sebelumnya sebagai endpoint API baru di 'HomeController': informasi nim, perolehan nilai, perbedaan L, paling ter
 - Memperbaiki unit test biar berhasil buat ngeters semua skenario (happy path & edge case)
 - Ngebenerin beberapa bug di controller (terutama masalah line ending `\n` vs `%n` yang bikin tes gagal )
